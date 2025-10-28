@@ -1,2 +1,2 @@
 #!/bin/bash
-mkdir -p pokemon_data; for pokemon in bulbasaur ivysaur venusaur charmander charmeleon; do echo "Fetching data for $pokemon..."; curl -s -o "pokemon_data/${pokemon}.json" "https://pokeapi.co/api/v2/pokemon/$pokemon" && echo "Saved data to pokemon_data/${pokemon}.json ✅"; sleep 2; done
+mkdir -p pokemon_data; for p in bulbasaur ivysaur venusaur charmander charmeleon; do echo "Fetching data for $p..."; ok=0; for i in {1..3}; do curl -s -f "https://pokeapi.co/api/v2/pokemon/$p" -o "pokemon_data/$p.json" && ok=1 && break || { echo "Attempt $i failed for $p. Retrying..."; sleep 2; }; done; [ $ok -eq 1 ] && echo "Saved data to pokemon_data/$p.json ✅" || echo "Failed to fetch $p after 3 attempts ❌" >> errors.txt; done
