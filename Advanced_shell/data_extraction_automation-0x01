@@ -1,2 +1,2 @@
 #!/bin/bash
-name=$(jq -r '.name' data.json); type=$(jq -r '.types[0].type.name' data.json); height=$(jq -r '.height' data.json); weight=$(jq -r '.weight' data.json); formatted_height=$(awk "BEGIN{print $height/10}"); formatted_weight=$(awk "BEGIN{print $weight/10}"); echo "${name^} is of type ${type^}, weighs ${formatted_weight}kg, and is ${formatted_height}m tall."
+name=$(jq -r '.name' data.json); type=$(jq -r '.types[0].type.name' data.json); height=$(jq -r '.height' data.json); weight=$(jq -r '.weight' data.json); formatted_height=$(awk "BEGIN{print $height/10}"); formatted_weight=$(awk "BEGIN{print $weight/10}"); echo "$name is of type $type, weighs ${formatted_weight}kg, and is ${formatted_height}m tall." | sed 's/^\(.\)/\U\1/;s/\(type \)\(.\)/\1\u\2/'
