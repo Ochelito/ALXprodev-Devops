@@ -1,2 +1,2 @@
 #!/bin/bash
-name=$(jq -r '.name' data.json); type=$(jq -r '.types[0].type.name' data.json); h=$(jq -r '.height' data.json); w=$(jq -r '.weight' data.json); echo "${name^} is of type ${type^}, weighs $(awk "BEGIN{print $w/10}")kg, and is $(awk "BEGIN{print $h/10}")m tall."
+name=$(jq -r '.name' data.json); type=$(jq -r '.types[0].type.name' data.json); height=$(jq -r '.height' data.json); weight=$(jq -r '.weight' data.json); formatted_height=$(awk "BEGIN{print $height/10}"); formatted_weight=$(awk "BEGIN{print $weight/10}"); echo "${name^} is of type ${type^}, weighs ${formatted_weight}kg, and is ${formatted_height}m tall."
