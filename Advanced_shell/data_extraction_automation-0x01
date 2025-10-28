@@ -1,2 +1,2 @@
 #!/bin/bash
-jq -r '"\(.name | ascii_upcase[0]\(.name[1:])) is of type \(.types[0].type.name | ascii_upcase), weighs \(.weight/10)kg, and is \(.height/10)m tall."' data.json | sed 's/^\(.\)/\U\1/'
+name=$(jq -r '.name' data.json); type=$(jq -r '.types[0].type.name' data.json); h=$(jq -r '.height' data.json); w=$(jq -r '.weight' data.json); echo "${name^} is of type ${type^}, weighs $(awk "BEGIN{print $w/10}")kg, and is $(awk "BEGIN{print $h/10}")m tall."
