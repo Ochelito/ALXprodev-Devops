@@ -1,2 +1,2 @@
 #!/bin/bash
-mkdir -p pokemon_data; for p in bulbasaur ivysaur venusaur charmander charmeleon; do (echo "Fetching $p..."; curl -s -f "https://pokeapi.co/api/v2/pokemon/$p" -o "pokemon_data/$p.json" && echo "Saved $p ✅" || echo "Failed to fetch $p ❌" >> errors.txt) & done; wait; echo "All downloads complete ✅"
+mkdir -p pokemon_data; for p in bulbasaur ivysaur venusaur charmander charmeleon; do (curl -s -f "https://pokeapi.co/api/v2/pokemon/$p" -o "pokemon_data/$p.json" && echo "Saved $p ✅" || echo "Error fetching $p" >> errors.txt) & done; jobs; wait; echo "All parallel fetches complete ✅"
