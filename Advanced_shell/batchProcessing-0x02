@@ -1,0 +1,2 @@
+#!/bin/bash
+mkdir -p pokemon_data; for pokemon in bulbasaur ivysaur venusaur charmander charmeleon; do echo "Fetching data for $pokemon..."; curl -s -o "pokemon_data/${pokemon}.json" "https://pokeapi.co/api/v2/pokemon/$pokemon" && echo "Saved data to pokemon_data/${pokemon}.json ✅"; sleep 2; done
